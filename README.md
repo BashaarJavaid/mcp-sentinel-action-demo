@@ -5,7 +5,7 @@ Public Phase 4 proof for
 
 The workflow scans paired clean and deliberately vulnerable Python MCP servers
 with the composite Action pinned to implementation commit
-`bc0f54e5cd3363f1912d88e958a0360a00783b7e`.
+`a8784d6adbb577a0bc40cb2f75e110d47aa92bc5`.
 
 - The clean target must complete with no findings.
 - The vulnerable target must upload SARIF and fail at the `high` threshold.
