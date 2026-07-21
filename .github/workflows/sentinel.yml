@@ -20,7 +20,7 @@ jobs:
 
       - name: Scan clean target
         id: sentinel
-        uses: BashaarJavaid/MCP-Sentinel@a8784d6adbb577a0bc40cb2f75e110d47aa92bc5
+        uses: BashaarJavaid/MCP-Sentinel@ee91e07d0fa78106dbb6d85b60bd8288173abd23
         with:
           target-path: clean_server
           fail-on: high
@@ -61,7 +61,7 @@ jobs:
       - name: Scan vulnerable target
         id: sentinel
         continue-on-error: true
-        uses: BashaarJavaid/MCP-Sentinel@a8784d6adbb577a0bc40cb2f75e110d47aa92bc5
+        uses: BashaarJavaid/MCP-Sentinel@ee91e07d0fa78106dbb6d85b60bd8288173abd23
         with:
           target-path: vulnerable_server
           fail-on: high
