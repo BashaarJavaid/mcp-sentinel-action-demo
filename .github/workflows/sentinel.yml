@@ -20,7 +20,7 @@ jobs:
 
       - name: Scan clean target
         id: sentinel
-        uses: BashaarJavaid/MCP-Sentinel@ee91e07d0fa78106dbb6d85b60bd8288173abd23
+        uses: BashaarJavaid/MCP-Sentinel@v1
         with:
           target-path: clean_server
           fail-on: high
@@ -61,7 +61,7 @@ jobs:
       - name: Scan vulnerable target
         id: sentinel
         continue-on-error: true
-        uses: BashaarJavaid/MCP-Sentinel@ee91e07d0fa78106dbb6d85b60bd8288173abd23
+        uses: BashaarJavaid/MCP-Sentinel@v1
         with:
           target-path: vulnerable_server
           fail-on: high
@@ -79,9 +79,9 @@ jobs:
           [[ "$STEP_OUTCOME" == "failure" ]]
           python verify_action_outputs.py \
             "$SARIF_PATH" "$FINDINGS_COUNT" "$HIGHEST_SEVERITY" \
-            --require-complete
-          [[ "$FINDINGS_COUNT" -gt "0" ]]
-          [[ "$HIGHEST_SEVERITY" == "critical" || "$HIGHEST_SEVERITY" == "high" ]]
+            --require-complete --expect-all-rules
+          [[ "$FINDINGS_COUNT" == "11" ]]
+          [[ "$HIGHEST_SEVERITY" == "critical" ]]
 
       - name: Preserve vulnerable SARIF
         if: always() && steps.sentinel.outputs.sarif-path != ''

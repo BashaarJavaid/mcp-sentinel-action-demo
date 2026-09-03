@@ -22,18 +22,25 @@ def main() -> int:
     parser.add_argument("findings_count", type=int)
     parser.add_argument("highest_severity")
     parser.add_argument("--require-complete", action="store_true")
+    parser.add_argument("--expect-all-rules", action="store_true")
     args = parser.parse_args()
 
     payload = cast(
         dict[str, Any], json.loads(args.sarif.read_text(encoding="utf-8"))
     )
     run = payload["runs"][0]
+    driver = run["tool"]["driver"]
     results = run.get("results", [])
     invocation = run["invocations"][0]
+    assert driver["version"] == driver["semanticVersion"] == "1.0.0"
     assert len(results) == args.findings_count
     assert invocation["properties"]["findingCount"] == args.findings_count
     if args.require_complete:
         assert invocation["properties"]["analysisComplete"] is True
+    if args.expect_all_rules:
+        assert {result["ruleId"] for result in results} == {
+            f"SENT-{number:03d}" for number in range(1, 12)
+        }
 
     severities = [
         result["properties"]["severity"].lower()
