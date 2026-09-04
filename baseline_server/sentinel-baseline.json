@@ -1,0 +1,624 @@
+{
+  "analysisComplete": true,
+  "baseline": null,
+  "completed_at": "2026-09-04T16:14:37.305774Z",
+  "executionSuccessful": true,
+  "findings": [
+    {
+      "baseline_matched": null,
+      "confidence": "high",
+      "dedup_key": "acc3917ad2f8ebbdeb84c952432483ff30bcd2027138a6d79fdd6ae84803296a",
+      "description": "Source or configuration contains a credential signature or contextual high-entropy secret.",
+      "evidence": {
+        "fingerprint": "eab94b70c7862a1dbc9f25c2b396ea76fba2d845dbc07aeb69d185dc821ab927",
+        "kind": "static",
+        "range": {
+          "end_column": 48,
+          "end_line": 8,
+          "start_column": 18,
+          "start_line": 8
+        },
+        "snippet": "fixture_token = \"<redacted>\""
+      },
+      "exploitability": "theoretical",
+      "finding_id": "330a8057-1862-4fcd-8588-994f7b9b5423",
+      "impact": "Critical",
+      "location": {
+        "kind": "file",
+        "path": "server.py",
+        "range": {
+          "end_column": 48,
+          "end_line": 8,
+          "start_column": 18,
+          "start_line": 8
+        }
+      },
+      "owasp_category": {
+        "id": "ASI03:2026",
+        "name": "Identity & Privilege Abuse"
+      },
+      "provenance": [
+        {
+          "evidence": {
+            "fingerprint": "eab94b70c7862a1dbc9f25c2b396ea76fba2d845dbc07aeb69d185dc821ab927",
+            "kind": "static",
+            "range": {
+              "end_column": 48,
+              "end_line": 8,
+              "start_column": 18,
+              "start_line": 8
+            },
+            "snippet": "fixture_token = \"<redacted>\""
+          },
+          "rule_id": "SENT-005",
+          "source": "static",
+          "timestamp": "2026-09-04T16:14:37.305774Z"
+        }
+      ],
+      "remediation": "Load credentials from an external secret store or environment at runtime.",
+      "review": {
+        "applied_at": "2026-09-04T16:14:37.305774Z",
+        "batch_id": null,
+        "confidence": null,
+        "evidence_refs": null,
+        "latency_ms": null,
+        "mode": "degraded",
+        "probe_plan": null,
+        "reason": "OPENAI_API_KEY is not set; continuing in degraded mode with rules-only candidates visible and fail-on eligible.",
+        "reasoning": null,
+        "requested_model": null,
+        "returned_model": null,
+        "reviewed": false,
+        "reviewed_at": null,
+        "status": "needs_review",
+        "suggested_severity_override": null,
+        "usage": null
+      },
+      "rule_id": "SENT-005",
+      "scan_id": "7fb35a81-481a-4c2d-97c5-a689a60b2c58",
+      "severity": "High",
+      "source": "static",
+      "status": "needs_review",
+      "suppression": null,
+      "timestamp": "2026-09-04T16:14:37.305774Z",
+      "title": "Hardcoded secret"
+    },
+    {
+      "baseline_matched": null,
+      "confidence": "high",
+      "dedup_key": "c50d36fa05a2c338ce6c773c8e3e4b803a777b98004f289dabcbafcbfc75732f",
+      "description": "The server executed a tool omitted from its declared permissions manifest.",
+      "evidence": {
+        "kind": "dynamic",
+        "logs": [],
+        "probe_id": "SENT-008",
+        "request": {
+          "value": "sentinel"
+        },
+        "response": {
+          "canary_created": false,
+          "content": [
+            {
+              "annotations": null,
+              "meta": null,
+              "text": "{\n  \"result\": \"sentinel\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "meta": null,
+          "structuredContent": {
+            "result": "sentinel"
+          }
+        }
+      },
+      "exploitability": "confirmed",
+      "finding_id": "67928ec6-3ed9-4c8b-b9f2-f5a3ca620599",
+      "impact": "Critical",
+      "location": {
+        "kind": "logical",
+        "path": "/tools/ungranted_echo"
+      },
+      "owasp_category": {
+        "id": "ASI02:2026",
+        "name": "Tool Misuse & Exploitation"
+      },
+      "provenance": [
+        {
+          "evidence": {
+            "kind": "dynamic",
+            "logs": [],
+            "probe_id": "SENT-008",
+            "request": {
+              "value": "sentinel"
+            },
+            "response": {
+              "canary_created": false,
+              "content": [
+                {
+                  "annotations": null,
+                  "meta": null,
+                  "text": "{\n  \"result\": \"sentinel\"\n}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "meta": null,
+              "structuredContent": {
+                "result": "sentinel"
+              }
+            }
+          },
+          "rule_id": "SENT-008",
+          "source": "dynamic",
+          "timestamp": "2026-09-04T16:14:37.305774Z"
+        }
+      ],
+      "remediation": "Reject tool calls that are not granted by the active capability policy.",
+      "review": {
+        "applied_at": "2026-09-04T16:14:37.305774Z",
+        "batch_id": null,
+        "confidence": null,
+        "evidence_refs": null,
+        "latency_ms": null,
+        "mode": "degraded",
+        "probe_plan": null,
+        "reason": "OPENAI_API_KEY is not set; continuing in degraded mode with rules-only candidates visible and fail-on eligible.",
+        "reasoning": null,
+        "requested_model": null,
+        "returned_model": null,
+        "reviewed": false,
+        "reviewed_at": null,
+        "status": "needs_review",
+        "suggested_severity_override": null,
+        "usage": null
+      },
+      "rule_id": "SENT-008",
+      "scan_id": "7fb35a81-481a-4c2d-97c5-a689a60b2c58",
+      "severity": "Critical",
+      "source": "dynamic",
+      "status": "needs_review",
+      "suppression": null,
+      "timestamp": "2026-09-04T16:14:37.305774Z",
+      "title": "Out-of-scope tool execution"
+    },
+    {
+      "baseline_matched": null,
+      "confidence": "high",
+      "dedup_key": "81db594e43f8654864e2497cb88bff750a28d47976b373d39ecc97ec2e596798",
+      "description": "The server accepted, hung, or crashed on a grossly oversized tool argument.",
+      "evidence": {
+        "kind": "dynamic",
+        "logs": [],
+        "probe_id": "SENT-009",
+        "request": {
+          "expression": "__SENTINEL_OVERSIZED__"
+        },
+        "response": {
+          "canary_created": false,
+          "content": [
+            {
+              "annotations": null,
+              "meta": null,
+              "text": "{\n  \"result\": \"accepted\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "meta": null,
+          "structuredContent": {
+            "result": "accepted"
+          }
+        }
+      },
+      "exploitability": "confirmed",
+      "finding_id": "59bd4113-9ef9-4f9c-9ec5-a93bdae80043",
+      "impact": "Medium",
+      "location": {
+        "kind": "logical",
+        "path": "/tools/dangerous/inputSchema/expression"
+      },
+      "owasp_category": {
+        "id": "ASI05:2026",
+        "name": "Unexpected Code Execution"
+      },
+      "provenance": [
+        {
+          "evidence": {
+            "kind": "dynamic",
+            "logs": [],
+            "probe_id": "SENT-009",
+            "request": {
+              "expression": "__SENTINEL_OVERSIZED__"
+            },
+            "response": {
+              "canary_created": false,
+              "content": [
+                {
+                  "annotations": null,
+                  "meta": null,
+                  "text": "{\n  \"result\": \"accepted\"\n}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "meta": null,
+              "structuredContent": {
+                "result": "accepted"
+              }
+            }
+          },
+          "rule_id": "SENT-009",
+          "source": "dynamic",
+          "timestamp": "2026-09-04T16:14:37.305774Z"
+        }
+      ],
+      "remediation": "Enforce schema and byte-size limits before invoking tool handlers.",
+      "review": {
+        "applied_at": "2026-09-04T16:14:37.305774Z",
+        "batch_id": null,
+        "confidence": null,
+        "evidence_refs": null,
+        "latency_ms": null,
+        "mode": "degraded",
+        "probe_plan": null,
+        "reason": "OPENAI_API_KEY is not set; continuing in degraded mode with rules-only candidates visible and fail-on eligible.",
+        "reasoning": null,
+        "requested_model": null,
+        "returned_model": null,
+        "reviewed": false,
+        "reviewed_at": null,
+        "status": "needs_review",
+        "suggested_severity_override": null,
+        "usage": null
+      },
+      "rule_id": "SENT-009",
+      "scan_id": "7fb35a81-481a-4c2d-97c5-a689a60b2c58",
+      "severity": "Medium",
+      "source": "dynamic",
+      "status": "needs_review",
+      "suppression": null,
+      "timestamp": "2026-09-04T16:14:37.305774Z",
+      "title": "Oversized argument accepted"
+    },
+    {
+      "baseline_matched": null,
+      "confidence": "high",
+      "dedup_key": "9ec4055663243b81233357abd8ec14a4057a734b9cf0100493fe2b667f906a77",
+      "description": "A tool argument caused the Sentinel scratch canary side effect.",
+      "evidence": {
+        "kind": "dynamic",
+        "logs": [],
+        "probe_id": "SENT-010",
+        "request": {
+          "expression": "__SENTINEL_INJECTION__"
+        },
+        "response": {
+          "canary_created": true,
+          "content": [
+            {
+              "annotations": null,
+              "meta": null,
+              "text": "{\n  \"result\": null\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "meta": null,
+          "structuredContent": {
+            "result": null
+          }
+        }
+      },
+      "exploitability": "confirmed",
+      "finding_id": "9634ba25-217d-4074-8d47-90df95fe548c",
+      "impact": "Critical",
+      "location": {
+        "kind": "logical",
+        "path": "/tools/dangerous/inputSchema/expression"
+      },
+      "owasp_category": {
+        "id": "ASI05:2026",
+        "name": "Unexpected Code Execution"
+      },
+      "provenance": [
+        {
+          "evidence": {
+            "kind": "dynamic",
+            "logs": [],
+            "probe_id": "SENT-010",
+            "request": {
+              "expression": "__SENTINEL_INJECTION__"
+            },
+            "response": {
+              "canary_created": true,
+              "content": [
+                {
+                  "annotations": null,
+                  "meta": null,
+                  "text": "{\n  \"result\": null\n}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "meta": null,
+              "structuredContent": {
+                "result": null
+              }
+            }
+          },
+          "rule_id": "SENT-010",
+          "source": "dynamic",
+          "timestamp": "2026-09-04T16:14:37.305774Z"
+        }
+      ],
+      "remediation": "Treat tool arguments as inert data and remove dynamic execution sinks.",
+      "review": {
+        "applied_at": "2026-09-04T16:14:37.305774Z",
+        "batch_id": null,
+        "confidence": null,
+        "evidence_refs": null,
+        "latency_ms": null,
+        "mode": "degraded",
+        "probe_plan": null,
+        "reason": "OPENAI_API_KEY is not set; continuing in degraded mode with rules-only candidates visible and fail-on eligible.",
+        "reasoning": null,
+        "requested_model": null,
+        "returned_model": null,
+        "reviewed": false,
+        "reviewed_at": null,
+        "status": "needs_review",
+        "suggested_severity_override": null,
+        "usage": null
+      },
+      "rule_id": "SENT-010",
+      "scan_id": "7fb35a81-481a-4c2d-97c5-a689a60b2c58",
+      "severity": "Critical",
+      "source": "dynamic",
+      "status": "needs_review",
+      "suppression": null,
+      "timestamp": "2026-09-04T16:14:37.305774Z",
+      "title": "Injection payload executed"
+    },
+    {
+      "baseline_matched": null,
+      "confidence": "high",
+      "dedup_key": "6adae1af1d7e03d57d578c901e0a1084de0a3947e57707ff55b6e8c2bd3a1480",
+      "description": "The server processed a missing or wrong-type required tool argument.",
+      "evidence": {
+        "kind": "dynamic",
+        "logs": [],
+        "probe_id": "SENT-011",
+        "request": {
+          "expression": "__SENTINEL_WRONG_TYPE__"
+        },
+        "response": {
+          "canary_created": false,
+          "content": [
+            {
+              "annotations": null,
+              "meta": null,
+              "text": "{\n  \"result\": \"accepted\"\n}",
+              "type": "text"
+            }
+          ],
+          "isError": false,
+          "meta": null,
+          "structuredContent": {
+            "result": "accepted"
+          }
+        }
+      },
+      "exploitability": "confirmed",
+      "finding_id": "00306512-8c72-4d79-9666-5f050720dfc8",
+      "impact": "Low",
+      "location": {
+        "kind": "logical",
+        "path": "/tools/dangerous/inputSchema/expression"
+      },
+      "owasp_category": {
+        "id": "ASI02:2026",
+        "name": "Tool Misuse & Exploitation"
+      },
+      "provenance": [
+        {
+          "evidence": {
+            "kind": "dynamic",
+            "logs": [],
+            "probe_id": "SENT-011",
+            "request": {
+              "expression": "__SENTINEL_WRONG_TYPE__"
+            },
+            "response": {
+              "canary_created": false,
+              "content": [
+                {
+                  "annotations": null,
+                  "meta": null,
+                  "text": "{\n  \"result\": \"accepted\"\n}",
+                  "type": "text"
+                }
+              ],
+              "isError": false,
+              "meta": null,
+              "structuredContent": {
+                "result": "accepted"
+              }
+            }
+          },
+          "rule_id": "SENT-011",
+          "source": "dynamic",
+          "timestamp": "2026-09-04T16:14:37.305774Z"
+        }
+      ],
+      "remediation": "Validate required fields and declared types before handler execution.",
+      "review": {
+        "applied_at": "2026-09-04T16:14:37.305774Z",
+        "batch_id": null,
+        "confidence": null,
+        "evidence_refs": null,
+        "latency_ms": null,
+        "mode": "degraded",
+        "probe_plan": null,
+        "reason": "OPENAI_API_KEY is not set; continuing in degraded mode with rules-only candidates visible and fail-on eligible.",
+        "reasoning": null,
+        "requested_model": null,
+        "returned_model": null,
+        "reviewed": false,
+        "reviewed_at": null,
+        "status": "needs_review",
+        "suggested_severity_override": null,
+        "usage": null
+      },
+      "rule_id": "SENT-011",
+      "scan_id": "7fb35a81-481a-4c2d-97c5-a689a60b2c58",
+      "severity": "Low",
+      "source": "dynamic",
+      "status": "needs_review",
+      "suppression": null,
+      "timestamp": "2026-09-04T16:14:37.305774Z",
+      "title": "Malformed schema input processed"
+    }
+  ],
+  "gpt_review": {
+    "batches": [],
+    "cache_errors": 0,
+    "cache_hits": 0,
+    "cache_misses": 0,
+    "cache_writes": 0,
+    "candidate_count": 5,
+    "confirmed_count": 0,
+    "current_cost_micro_usd": 0,
+    "current_latency_ms": 0,
+    "current_usage": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "reasoning_tokens": 0,
+      "total_tokens": 0
+    },
+    "endpoint_mode": "openai",
+    "endpoint_url_hash": "e2b64e5a4d5de3dafccd283071feaceabfa0b81e065e750438c16611063af89c",
+    "failure_count": 2,
+    "mode": "degraded",
+    "needs_review_count": 5,
+    "origin_cost_micro_usd": 0,
+    "origin_latency_ms": 0,
+    "origin_usage": {
+      "cache_write_tokens": 0,
+      "cached_tokens": 0,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "reasoning_tokens": 0,
+      "total_tokens": 0
+    },
+    "overflow_count": 0,
+    "pricing": {
+      "as_of": "2026-09-03",
+      "cache_write_multiplier_millionths": 1250000,
+      "cached_input_micro_usd_per_million": 400000,
+      "input_micro_usd_per_million": 4000000,
+      "model": "gpt-5.6-sol",
+      "output_micro_usd_per_million": 20000000,
+      "source": "https://developers.openai.com/api/docs/models/gpt-5.6-sol"
+    },
+    "reasoning_effort": "medium",
+    "requested_model": "gpt-5.6-sol",
+    "reviewed_count": 0,
+    "selected_count": 5,
+    "suppressed_count": 0
+  },
+  "scan_id": "7fb35a81-481a-4c2d-97c5-a689a60b2c58",
+  "schema_version": "1.4.0",
+  "sentinel_version": "1.2.0",
+  "stages": [
+    {
+      "name": "static",
+      "reason": null,
+      "status": "succeeded"
+    },
+    {
+      "name": "gpt_static",
+      "reason": null,
+      "status": "succeeded"
+    },
+    {
+      "name": "dynamic",
+      "reason": null,
+      "status": "succeeded"
+    },
+    {
+      "name": "gpt_dynamic",
+      "reason": null,
+      "status": "succeeded"
+    },
+    {
+      "name": "merge",
+      "reason": null,
+      "status": "succeeded"
+    },
+    {
+      "name": "reporting",
+      "reason": null,
+      "status": "succeeded"
+    }
+  ],
+  "started_at": "2026-09-04T16:14:37.305553Z",
+  "static_analysis": {
+    "duration_ms": 2087,
+    "ignored_file_count": 0,
+    "rule_outcomes": [
+      {
+        "exemptions_by_reason": {},
+        "match_count": 0,
+        "rule_id": "SENT-003",
+        "skip_reason": null,
+        "status": "evaluated"
+      },
+      {
+        "exemptions_by_reason": {},
+        "match_count": 1,
+        "rule_id": "SENT-005",
+        "skip_reason": null,
+        "status": "evaluated"
+      }
+    ],
+    "scanned_file_count": 5,
+    "selected_rule_ids": [
+      "SENT-003",
+      "SENT-005"
+    ],
+    "total_matches": 1
+  },
+  "summary": {
+    "by_severity": {
+      "Critical": 2,
+      "High": 1,
+      "Informational": 0,
+      "Low": 1,
+      "Medium": 1
+    },
+    "by_status": {
+      "confirmed": 0,
+      "likely_false_positive": 0,
+      "needs_review": 5,
+      "suppressed": 0
+    },
+    "total": 5
+  },
+  "target": {
+    "display_name": "baseline_server",
+    "root": "."
+  },
+  "warnings": [
+    {
+      "code": "gpt_review_unavailable",
+      "message": "OPENAI_API_KEY is not set; continuing in degraded mode with rules-only candidates visible and fail-on eligible."
+    },
+    {
+      "code": "dynamic_probe_plan_fallback",
+      "message": "No valid non-suppressed GPT probe plan was available; used the fixed safe dynamic probe order and runtime schemas."
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+version: 1
+tools:
+  dangerous:
+    filesystem:
+      read: {scopes: []}
+      write: {scopes: []}
+    network: {scopes: []}

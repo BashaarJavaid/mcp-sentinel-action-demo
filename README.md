@@ -16,3 +16,10 @@ with the composite Action's signed `v1` alias, which resolves to release
 
 The token-like string in `vulnerable_server/server.py` is inert fixture data,
 not a real credential.
+
+The manual `adoption.yml` workflow proves Phase 12 against either exact
+`v1.2.0` or the signed `v1` alias. Its dedicated `baseline_server` has one
+static and four dynamic accepted findings: an unchanged scan passes with all
+five visible, while adding one inert secret produces exactly one new failing
+finding. The exact proof also installs the public pre-commit hook and exercises
+clean, vulnerable, and inline-suppressed cases.

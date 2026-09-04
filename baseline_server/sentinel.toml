@@ -1,0 +1,5 @@
+[scanner]
+rules = ["SENT-003", "SENT-005"]
+
+[llm]
+retries = 0
