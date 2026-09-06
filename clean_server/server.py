@@ -41,8 +41,8 @@ def safe_calculator(expression: str) -> object:
 
 @mcp.tool()
 def validated_lookup(arguments: dict[str, object]) -> object:
-    ValidatedArguments.model_validate(arguments)
-    return arguments["record_id"]
+    validated = ValidatedArguments.model_validate(arguments)
+    return validated.record_id
 
 
 @mcp.prompt()
