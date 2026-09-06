@@ -32,7 +32,7 @@ def main() -> int:
     driver = run["tool"]["driver"]
     results = run.get("results", [])
     invocation = run["invocations"][0]
-    assert driver["version"] == driver["semanticVersion"] == "1.2.1"
+    assert driver["version"] == driver["semanticVersion"] == "1.3.0"
     assert len(results) == args.findings_count
     assert invocation["properties"]["findingCount"] == args.findings_count
     if args.require_complete:
